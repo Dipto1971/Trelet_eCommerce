@@ -1,13 +1,22 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../Components/Rating";
-import products from "../products";
 
 const ProductScreen = () => {
-  const { id: productID } = useParams();
-  const product = products.find((p) => p._id === productID);
+  const [product, setProducts] = useState([]);
 
+  const { id: productID } = useParams();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get(`/api/products/${productID}`);
+      setProducts(data);
+      console.log(data);
+    };
+    fetchProducts();
+  }, [productID]);
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
@@ -70,3 +79,13 @@ const ProductScreen = () => {
 };
 
 export default ProductScreen;
+
+// useEffect & useState are react hooks that allow us to use state and lifecycle methods in functional components
+// The procedure how to use them is as follows:
+// 1. import them from react
+// 2. call them in the component
+// 3. pass in the initial state as an argument to useState
+// 4. call useEffect and pass in a function that will run when the component loads
+// 5. inside the function, call the axios request and set the state to the data
+// 6. pass in an empty array as a second argument to useEffect
+// 7. if you want to run the function when a variable changes, pass in the variable as a second argument to useEffect

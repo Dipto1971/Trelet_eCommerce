@@ -1,9 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import Product from "../Components/Product";
-import products from "../products.js";
 
 const HomeScreen = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get("/api/products");
+      setProducts(data);
+      console.log(data);
+    };
+    fetchProducts();
+    //Explanation: this is a function that will run when the component loads, it will fetch the data from the backend and set the state of the products to the data
+  }, []);
+  //react explanation of useEffect: this is an array of dependencies, if the array is empty, it will run only once, if it has a variable, it will run when that variable changes
   return (
     <>
       <h1>Latest Products</h1>
