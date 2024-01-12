@@ -9,7 +9,7 @@ const notFound = (req, res, next) => {
 
 const errorHandler = (err, req, res, next) => {
     // Sometimes we get a 200 status code even when there is an error. So we set the status code to 500 if the status code is 200.
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     let message = err.message;
     
     if(err.name === 'CastError'){
