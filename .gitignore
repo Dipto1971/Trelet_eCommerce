@@ -20,5 +20,10 @@ yarn-error.log*
 *.sw?
 ```
 
-## License
+# License
 MIT License
+
+package.json
+pacxkage-lock.json
+
+.gitignore

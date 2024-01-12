@@ -1,19 +1,28 @@
 import express from 'express';
-import products from '../data/products.js';
+import asyncHandler from '../middleware/asyncHandler.js';
+import Product from '../models/productModel.js';
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send(products);
-});
+router.get('/', asyncHandler(async (req, res) => {
+    //fetching data from the database MongoDB
+    const products = await Product.find({});
+    res.json(products);
+}));
 // from app. to router. and from app.get to router.get means that we are using the router to get the products instead of the app.
 
-router.get('/:id', (req, res) => {
-    const product = products.find((x) => x._id === req.params.id);
+router.get(
+    '/:id',
+    asyncHandler( async(req, res) => {
+    const product = await Product.findById(req.params.id);
+    
     if(product){
-        res.send(product);
-    } else {
-        res.status(404).send({ message: 'Product Not Found'});
+        res.json(product);
     }
-});
+    else{
+        res.status(404);
+        throw new Error('Resource you searched not found');
+    }
+        // Thorowing new error is using the errorHandler middleware function.
+}));
 
 export default router;

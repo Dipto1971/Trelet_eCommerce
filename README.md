@@ -1,2 +1,3 @@
 # Trelet
-A Full Functional E commerce Website.
+
+A Full Functional e-commerce Website.
