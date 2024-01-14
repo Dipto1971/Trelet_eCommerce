@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 // this file will be used to create the store and export it to the app component
 import { apiSlice } from './slices/apiSlice';
+import cartSliceReducer from './slices/cartSlice';
 
 const store = configureStore({
     reducer: {
         // this is where we will add reducers
         [apiSlice.reducerPath]: apiSlice.reducer,
+        cart: cartSliceReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiSlice.middleware),

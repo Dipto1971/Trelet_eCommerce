@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Col, Image, ListGroup, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../Components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
@@ -7,6 +7,9 @@ import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 const ProductScreen = () => {
   const { id: productId } = useParams();
   // useParams is a react hook that allows us to access the parameters in the url. It returns an object with the parameters as keys and the values as values.
+
+  const [qty, setQty] = useState(1);
+
   const {
     data: product,
     isLoading,
@@ -65,10 +68,39 @@ const ProductScreen = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
+
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col> Qty </Col>
+                        <Col>
+                          <Form.Control
+                            as="select"
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
+                          >
+                            {
+                              // this creates an array of numbers from 0 to countInStock
+                              [...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {/* x + 1 because we want to start from 1 */}
+                                    {x + 1}
+                                  </option>
+                                )
+                              )
+                            }
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+
                   <ListGroup.Item>
                     <button
                       className="btn btn-dark btn-block"
                       disabled={product.countInStock === 0}
+                      onClick={() => {}
                     >
                       Add to Cart
                     </button>
