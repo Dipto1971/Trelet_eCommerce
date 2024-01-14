@@ -12,9 +12,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
-
 
 
 const router = createBrowserRouter(
@@ -22,6 +22,7 @@ const router = createBrowserRouter(
     <Route path="/" element={ <App /> }>
      <Route index={true} path = "/" element={<HomeScreen />} />
       <Route path = "/product/:id" element={<ProductScreen />} />
+      <Route path = "/cart" element={<CartScreen />} />
     </Route>
   )
 );

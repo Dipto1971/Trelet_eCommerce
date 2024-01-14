@@ -2,6 +2,21 @@ main {
   min-height: 80vh;
 }
 
+.btn-block {
+  display: block;
+  color: #fff;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border: 1px solid navy;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgb(39, 39, 39);
+}
+
 h3 {
   padding: 1rem 0;
 }

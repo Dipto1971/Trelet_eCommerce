@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Rating from "../Components/Rating";
+import { addToCart } from "../slices/cartSlice";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
   // useParams is a react hook that allows us to access the parameters in the url. It returns an object with the parameters as keys and the values as values.
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
 
@@ -15,6 +20,12 @@ const ProductScreen = () => {
     isLoading,
     error,
   } = useGetProductDetailsQuery(productId);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate(`/cart`);
+  };
+
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
@@ -100,7 +111,9 @@ const ProductScreen = () => {
                     <button
                       className="btn btn-dark btn-block"
                       disabled={product.countInStock === 0}
-                      onClick={() => {}
+                      onClick={() => {
+                        addToCartHandler();
+                      }}
                     >
                       Add to Cart
                     </button>
