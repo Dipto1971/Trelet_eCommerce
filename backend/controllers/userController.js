@@ -1,4 +1,4 @@
-import asyncHandler from 'middleware/asyncHandler.js';
+import asyncHandler from '../middleware/asyncHandler.js';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -63,3 +63,16 @@ const getUserById = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     res.send('delete user');
 });
+
+// @desc    Update user
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+
+const updateUser = asyncHandler(async (req, res) => {
+    res.send('update user');
+});
+
+export {
+    authUsers, deleteUser, getUserById, getUserProfile, getUsers, logoutUser, registerUser, updateUser, updateUserProfile
+};
+
