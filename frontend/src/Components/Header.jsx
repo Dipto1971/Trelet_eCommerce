@@ -33,7 +33,7 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src={logo} alt="Trelet" width="50px" />
+              <img src={logo} alt="relet" width="50px" />
               Trelet
             </Navbar.Brand>
           </LinkContainer>

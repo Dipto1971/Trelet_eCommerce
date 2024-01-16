@@ -23,12 +23,19 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
             }),
         }),
+        profile: builder.mutation({
+            query: (data) => ({
+                url: `${USERS_URL}/profile`,
+                method: 'PUT',
+                body: data,
+            }),
+        }),
     }),
 });
 
 // From this we should be able to dispatch the login action from the frontend/src/screens/LoginScreen.js file. We will use the useLoginMutation hook to dispatch the login action from the frontend/src/screens/LoginScreen.js file.
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = usersApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useProfileMutation } = usersApiSlice;
 
 // Convention: use<endpointName>Mutation
 
