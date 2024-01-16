@@ -11,11 +11,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import AdminRoute from './Components/AdminRoute';
 import PrivateRoute from './Components/PrivateRoute';
 import './index.css';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import OrderListScreen from './screens/OrderListScreen';
 import OrderScreen from './screens/OrderScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
@@ -39,6 +41,9 @@ const router = createBrowserRouter(
       <Route path = "/placeorder" element={<PlaceOrderScreen />} />
       <Route path = "/order/:id" element={<OrderScreen />} />
       <Route path = "/profile" element={<ProfileScreen />} />
+      </ Route>
+      <Route path= "" element={<AdminRoute />} >
+      <Route path = "/admin/orderlist" element={<OrderListScreen />} />
       </ Route>
     </Route>
   )
