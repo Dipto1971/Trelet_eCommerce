@@ -82,3 +82,87 @@ h2 {
     font-size: 2.5vw;
   }
 }
+@media (max-width: 600px) {
+  .carousel-caption h2 {
+    font-size: 3.5vw;
+  }
+}
+@media (max-width: 400px) {
+  .carousel-caption h2 {
+    font-size: 5vw;
+  }
+}
+/* Widget styling */
+
+.widget {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.widget-header {
+  padding: 15px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.widget-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.widget-content {
+  padding: 20px;
+}
+
+.widget-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.widget-content a {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+.widget-content a:hover {
+  color: #000;
+}
+
+.widget-content a i {
+  margin-right: 5px;
+}
+
+.widget-footer {
+  padding: 15px 20px;
+  background-color: #fff;
+  border-top: 1px solid #ebebeb;
+}
+
+.widget-footer a {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+.widget-footer a:hover {
+  color: #000;
+}
+
+.widget-footer a i {
+  margin-right: 5px;
+}

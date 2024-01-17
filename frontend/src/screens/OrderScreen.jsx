@@ -1,8 +1,13 @@
-import { Col, Image, ListGroup, Row } from "react-bootstrap";
+import { Button, Col, Image, ListGroup, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
-import { useGetOrderDetailsQuery } from "../slices/ordersApiSlice";
+import {
+  useDeliverOrderMutation,
+  useGetOrderDetailsQuery,
+} from "../slices/ordersApiSlice";
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
@@ -12,7 +17,24 @@ const OrderScreen = () => {
     error,
     isLoading,
   } = useGetOrderDetailsQuery(orderId);
-  console.log(order);
+
+  const [deliverOrder, { isLoading: loadingDeliver }] =
+    useDeliverOrderMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  // Before Delivering the order, we need to make sure that the user is admin and the order is not delivered yet and also the order is paid.
+  // so functions for paid needs to be added here
+
+  const deliverOrderHandler = async () => {
+    try {
+      await deliverOrder(orderId);
+      refetch();
+      toast.success("Order Delivered");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return isLoading ? (
     <Loader />
@@ -125,6 +147,21 @@ const OrderScreen = () => {
                 <Col>${order.totalPrice}</Col>
               </Row>
             </ListGroup.Item>
+
+            {loadingDeliver && <Loader />}
+
+            {userInfo && userInfo.isAdmin && !order.isDelivered && (
+              // We need to add isPaid condition here because we don't want to show Mark As Delivered button if the order is not paid yet.
+              <ListGroup.Item>
+                <Button
+                  type="button"
+                  className="btn btn-block"
+                  onClick={deliverOrderHandler}
+                >
+                  Mark As Delivered
+                </Button>
+              </ListGroup.Item>
+            )}
           </ListGroup>
         </Col>
       </Row>
