@@ -11,7 +11,7 @@ import {
 const UserListScreen = () => {
   const { data: users, isLoading, error } = useGetUsersQuery();
 
-  const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure?")) {
       try {

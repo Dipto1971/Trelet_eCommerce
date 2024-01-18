@@ -3,12 +3,13 @@ import { FaTimes } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
-import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
+import Meta from "../Components/Meta";
+import { useGetOrdersQuery } from "../slices/ordersApiSlice";
 const OrderListScreen = () => {
-  const { data: orders, isLoading, error } = useGetMyOrdersQuery();
-
+  const { data: orders, isLoading, error } = useGetOrdersQuery();
   return (
     <>
+      <Meta title="Trelet | Orders" />
       <h1>Orders</h1>
       {isLoading ? (
         <Loader />

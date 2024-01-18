@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import Rating from "../Components/Rating";
 import { addToCart } from "../slices/cartSlice";
 import {
@@ -29,7 +30,7 @@ const ProductScreen = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
-  const [createReview, { isLoading: isReviewLoading, error: reviewError }] =
+  const [createReview, { isLoading: isReviewLoading }] =
     useCreateReviewMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
@@ -52,6 +53,7 @@ const ProductScreen = () => {
 
   return (
     <>
+      <Meta title={product?.name} />
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>

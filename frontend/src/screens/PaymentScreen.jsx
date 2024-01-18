@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../Components/CheckoutSteps";
 import FormContainer from "../Components/FormContainer";
+import Meta from "../Components/Meta";
 import { savePaymentMethod } from "../slices/cartSlice";
 
 const PaymentScreen = () => {
@@ -28,6 +29,7 @@ const PaymentScreen = () => {
 
   return (
     <FormContainer>
+      <Meta title="Trelet | Payment Method" />
       <CheckoutSteps step1 step2 step3 />
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>

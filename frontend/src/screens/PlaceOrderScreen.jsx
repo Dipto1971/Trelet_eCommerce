@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import CheckoutSteps from "../Components/CheckoutSteps";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import { clearCartItems } from "../slices/cartSlice";
 import { useCreateOrderMutation } from "../slices/ordersApiSlice";
 
@@ -46,6 +46,7 @@ const PlaceOrderScreen = () => {
   };
   return (
     <>
+      <Meta title="Trelet | Place Order" />
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>

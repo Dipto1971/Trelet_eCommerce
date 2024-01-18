@@ -4,11 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import {
   useDeliverOrderMutation,
   useGetOrderDetailsQuery,
 } from "../slices/ordersApiSlice";
-
 const OrderScreen = () => {
   const { id: orderId } = useParams();
   const {
@@ -17,6 +17,9 @@ const OrderScreen = () => {
     error,
     isLoading,
   } = useGetOrderDetailsQuery(orderId);
+
+  console.log(order);
+  console.log(orderId);
 
   const [deliverOrder, { isLoading: loadingDeliver }] =
     useDeliverOrderMutation();
@@ -42,6 +45,7 @@ const OrderScreen = () => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
+      <Meta title={`Trelet | Order ${order._id}`} />
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import FormContainer from "../Components/FormContainer";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import {
   useGetUserDetailsQuery,
   useUpdateUserMutation,
@@ -49,6 +50,7 @@ const UserEditScreen = () => {
 
   return (
     <>
+      <Meta title="Trelet | Edit User" />
       <Link to="/admin/userlist" className="btn btn-light my-3">
         Go Back
       </Link>

@@ -5,9 +5,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormContainer from "../Components/FormContainer";
 import Loader from "../Components/Loader";
+import Meta from "../Components/Meta";
 import { setCredentials } from "../slices/authSlice";
 import { useLoginMutation } from "../slices/usersApiSlice";
-
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +42,7 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
+      <Meta title="Trelet | Sign In" />
       <h1>Sign In</h1>
 
       <Form onSubmit={submitHandler}>

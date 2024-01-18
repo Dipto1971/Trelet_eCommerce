@@ -4,6 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const CartScreen = () => {
 
   return (
     <Row>
+      <Meta title="Trelet | Cart" />
       <Col md={8}>
         <h1 style={{ marginTop: "20px" }}>Shopping Cart</h1>
         {cartItems.length === 0 ? (

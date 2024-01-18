@@ -5,12 +5,12 @@ import { toast } from "react-toastify";
 import FormContainer from "../Components/FormContainer";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import {
   useGetProductDetailsQuery,
   useUpdateProductMutation,
   useUploadProductImageMutation,
 } from "../slices/productsApiSlice";
-
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
 
@@ -95,6 +95,7 @@ const ProductEditScreen = () => {
 
   return (
     <>
+      <Meta title={`Trelet | Edit Product ${productId}`} />
       <Link to="/admin/productlist" className="btn btn-light my-3">
         Go Back
       </Link>

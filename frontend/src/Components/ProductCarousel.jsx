@@ -4,7 +4,7 @@ import { useGetTopProductsQuery } from "../slices/productsApiSlice";
 import Loader from "./Loader";
 import Message from "./Message";
 const ProductCarousel = () => {
-  const { data: products, isLoading, error, index } = useGetTopProductsQuery(3);
+  const { data: products, isLoading, error, index } = useGetTopProductsQuery(1);
 
   return isLoading ? (
     <Loader />

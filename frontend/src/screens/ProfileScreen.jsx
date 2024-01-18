@@ -5,10 +5,10 @@ import { LinkContainer } from "react-router-bootstrap";
 import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import { setCredentials } from "../slices/authSlice";
 import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
 import { useProfileMutation } from "../slices/usersApiSlice";
-
 const ProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -52,6 +52,7 @@ const ProfileScreen = () => {
 
   return (
     <Row>
+      <Meta title="Trelet | Profile" />
       <Col md={3}>
         <h2>User Profile</h2>
 

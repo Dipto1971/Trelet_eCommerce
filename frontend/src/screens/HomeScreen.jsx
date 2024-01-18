@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Meta from "../Components/Meta";
 import Paginate from "../Components/Paginate";
 import Product from "../Components/Product";
 import ProductCarousel from "../Components/ProductCarousel";
@@ -31,6 +32,7 @@ const HomeScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title="Trelet" />
           <h1>Latest Products</h1>
           <Row>
             {data.products.map((product) => (

@@ -18,10 +18,10 @@ const OrderListScreen = () => {
     pageNumber,
   });
 
-  const [createProduct, { isLoading: loadingCreate, error: createError }] =
+  const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
 
-  const [deleteProduct, { isLoading: loadingDelete, error: deleteError }] =
+  const [deleteProduct, { isLoading: loadingDelete }] =
     useDeleteProductMutation();
 
   const deleteHandler = async (id) => {

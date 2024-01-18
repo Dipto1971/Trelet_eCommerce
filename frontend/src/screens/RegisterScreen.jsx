@@ -5,9 +5,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormContainer from "../Components/FormContainer";
 import Loader from "../Components/Loader";
+import Meta from "../Components/Meta";
 import { setCredentials } from "../slices/authSlice";
 import { useRegisterMutation } from "../slices/usersApiSlice";
-
 const RegisterScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,6 +49,7 @@ const RegisterScreen = () => {
 
   return (
     <FormContainer>
+      <Meta title="Register" />
       <h1>Sign Up</h1>
 
       <Form onSubmit={submitHandler}>
