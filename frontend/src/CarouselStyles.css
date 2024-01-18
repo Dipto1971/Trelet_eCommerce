@@ -1,0 +1,31 @@
+.custom-carousel {
+  position: relative;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-item {
+  transition: transform 0.6s ease;
+}
+
+.item-1 {
+  transform: translateX(0%);
+}
+
+.item-2 {
+  transform: translateX(50%);
+}
+
+.item-3 {
+  transform: translateX(100%);
+}
+
+.item-4 {
+  transform: translateX(-50%);
+}
+
+.item-5 {
+  transform: translateX(-100%);
+}

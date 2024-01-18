@@ -1,17 +1,22 @@
 import { Button, Col, Row, Table } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import Paginate from "../Components/Paginate";
 import {
   useCreateProductMutation,
   useDeleteProductMutation,
   useGetProductsQuery,
 } from "../slices/productsApiSlice";
-
 const OrderListScreen = () => {
-  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const { pageNumber } = useParams();
+
+  const { data, isLoading, error, refetch } = useGetProductsQuery({
+    pageNumber,
+  });
 
   const [createProduct, { isLoading: loadingCreate, error: createError }] =
     useCreateProductMutation();
@@ -72,7 +77,7 @@ const OrderListScreen = () => {
               <th>BRAND</th>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -97,6 +102,7 @@ const OrderListScreen = () => {
               ))}
             </tbody>
           </Table>
+          <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
     </>
