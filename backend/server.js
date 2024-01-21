@@ -9,7 +9,7 @@ import productRoutes from './routes/productRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 
 connectDB();
 const app = express();
@@ -33,6 +33,7 @@ app.use('/api/uploads', uploadRoutes);
 const __dirname = path.resolve(); //Set __dirname to current directory
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
+
 if(process.env.NODE_ENV === 'production') {
     // Set static folder
     app.use(express.static(path.join(__dirname, '/frontend/build')));
@@ -47,6 +48,7 @@ if(process.env.NODE_ENV === 'production') {
         res.send('API is running...');
     });
 }
+
 
 app.use(notFound);
 app.use(errorHandler);
