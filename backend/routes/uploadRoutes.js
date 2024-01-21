@@ -1,6 +1,6 @@
-import path from 'path';
 import express from 'express';
 import multer from 'multer';
+import path from 'path';
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -13,27 +13,28 @@ const storage = multer.diskStorage({
 });
 
 // function to check file type
-function checkFileType(file, cb) {
+function fileFilter(req, file, cb){
     const filetypes = /jpg|jpeg|png/;
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()); //test method returns true or false
-    const mimetype = filetypes.test(file.mimetype);
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()); // test if the extension name is in the filetypes array
+    const mimetype = filetypes.test(file.mimetype); // test if the mimetype is in the filetypes array
 
-    if (extname && mimetype) {
-        return cb(null, true);
-        // cb is callback function which takes error and boolean
+    if(extname && mimetype) {
+        cb(null, true);
     } else {
-        cb('Images only!');
+        cb(new Error('Images only!'), false);
     }
 }
 
-const upload = multer({
-    storage,
-});
+const upload = multer ({ storage, fileFilter });
+const uploadSingleImage = upload.single('image');
 
 router.post('/', upload.single('image'), (req, res) => {
-    res.send({
-        message: 'Image Uploaded',
-        image: `/${req.file.path}`,
+    uploadSingleImage(req, res, (err) => {
+        if(err) {
+            res.status(400).send({ message: err.message });
+        } else {
+            res.send(`/${req.file.path}`);
+        }
     });
 });
 
