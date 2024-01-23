@@ -5,9 +5,10 @@ import Loader from "../Components/Loader";
 import Message from "../Components/Message";
 import Meta from "../Components/Meta";
 import Paginate from "../Components/Paginate";
-import Product from "../Components/Product";
+// import Product from "../Components/Product";
 import ProductCarousel from "../Components/ProductCarousel";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
+const LazyProduct = React.lazy(() => import("../Components/Product"));
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
   const { data, isLoading, error } = useGetProductsQuery({
@@ -33,11 +34,14 @@ const HomeScreen = () => {
       ) : (
         <>
           <Meta title="Trelet" />
-          <h1>Latest Products</h1>
+          <h1>Our Products</h1>
           <Row>
             {data.products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                <Product product={product} />
+                {/* <Product product={product} /> */}
+                <React.Suspense fallback={<Loader />}>
+                  <LazyProduct product={product} />
+                </React.Suspense>
                 {/* <h3>
               <strong>{product.name}</strong> <br />
               <strong>{product.price}</strong>
